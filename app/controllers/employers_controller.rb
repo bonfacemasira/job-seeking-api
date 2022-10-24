@@ -6,7 +6,7 @@ class EmployersController < ApplicationController
     end
 
     def employer_params
-        params.permit(:organization, :user_id)
+        params.permit(:organization, :phone_number, :user_id)
         
     end
     private
