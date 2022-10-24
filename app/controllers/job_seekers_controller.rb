@@ -6,7 +6,7 @@ class JobSeekersController < ApplicationController
     
     def create
         job_seeker = JobSeeker.create!(job_seeker_params)
-        render json: job_seeker
+        render json: job_seeker, status: :created
         
     end
     private
