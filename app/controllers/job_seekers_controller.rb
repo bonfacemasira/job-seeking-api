@@ -12,7 +12,7 @@ class JobSeekersController < ApplicationController
     private
 
     def job_seeker_params
-        params.permit(:)
+        params.permit(:full_name, :salary_expectation, :cv, :certificates, :user_id, :availability)
         
     end
     def render_unprocessable_entity_response(invalid)
