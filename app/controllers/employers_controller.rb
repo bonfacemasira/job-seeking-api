@@ -1,6 +1,6 @@
 class EmployersController < ApplicationController
     def create
-        employer = Employee.create!(employer_params)
+        employer = Employer.create!(employer_params)
         render json: employer, status: :created
         
     end
