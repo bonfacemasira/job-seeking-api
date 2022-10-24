@@ -3,7 +3,7 @@ class CreateJobSeekers < ActiveRecord::Migration[7.0]
     create_table :job_seekers do |t|
       t.string :full_name
       t.integer :salary_expectation
-      t.string :certficates
+      t.string :certificates, array:true, default:[]
       t.string :cv
       t.boolean :availability
       t.integer :user_id
