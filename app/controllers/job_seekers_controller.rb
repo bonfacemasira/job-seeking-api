@@ -1,6 +1,21 @@
 class JobSeekersController < ApplicationController
-
-    def method_name
+    wrap_parameters format: []
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+   
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    
+    def create
+        job_seeker = JobSeeker.create!(job_seeker_params)
+        render json: job_seeker
         
     end
+    private
+
+    def job_seeker_params
+        params.permit(:)
+        
+    end
+    def render_unprocessable_entity_response(invalid)
+        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+      end
 end
