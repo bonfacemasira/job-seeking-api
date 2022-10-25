@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payments
   resources :job_seekers
   resources :employers
   devise_for :users,:controllers => {
