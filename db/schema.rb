@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_142510) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,11 +43,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_142510) do
   end
 
   create_table "employers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "phone_number"
     t.string "organization"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "phone_number"
+    t.index ["user_id"], name: "index_employers_on_user_id"
   end
 
   create_table "job_seekers", force: :cascade do |t|
@@ -60,6 +61,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_142510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "skills"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.bigint "employer_id", null: false
+    t.bigint "job_seeker_id", null: false
+    t.bigint "user_id", null: false
+    t.string "profile_picture"
+    t.string "email"
+    t.string "phone_number"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_offers_on_employer_id"
+    t.index ["job_seeker_id"], name: "index_offers_on_job_seeker_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "employer_id", null: false
+    t.integer "amount"
+    t.string "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_payments_on_employer_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -102,4 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_142510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "employers", "users"
+  add_foreign_key "offers", "employers"
+  add_foreign_key "offers", "job_seekers"
+  add_foreign_key "offers", "users"
+  add_foreign_key "payments", "employers"
 end

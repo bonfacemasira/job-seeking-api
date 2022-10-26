@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-
   devise_for :users,:controllers => {
     :registrations => 'user/registrations', :defaults => { :format => 'json' },
 }
@@ -8,5 +6,8 @@ Rails.application.routes.draw do
  resources :sessions, only: [:create, :destroy]
  resources :job_seekers
  resources :profiles, only: [:update]
-  resources :employers
+ resources :offers
+ resources :payments
+ resources :employers
+
 end
