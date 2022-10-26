@@ -171,6 +171,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   debug
   devise
   image_processing (>= 1.2)
