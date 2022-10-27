@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
     # protect_from_forgery prepend: true
     # skip_before_action :verify_authenticity_token, :only => :create
 
-    before_action :configure_permitted_parameters, if: :devise_controller?
+    
 
     before_action :configure_permitted_parameters, if: :devise_controller?
     respond_to :json

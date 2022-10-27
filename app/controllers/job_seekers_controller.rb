@@ -3,8 +3,10 @@ class JobSeekersController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    
+    # include ActiveStorage::SetBlob, ActiveStorage::Streaming
     def create
+        if cv 
+            filename = cv[]
         job_seeker = JobSeeker.create!(job_seeker_params)
         render json: job_seeker, status: :created
         
@@ -27,14 +29,14 @@ class JobSeekersController < ApplicationController
     private
 
     def job_seeker_params
-        params.permit(:full_name, :salary_expectation, :cv,:skills, :user_id, :availability,  certificates: [], experience: [], :country, :passport, :image, :job_type)
+     params.permit(:full_name, :country, :passport, :image, :job_type,:salary_expectation, :cv,:skills, :user_id, :availability,  :certificate, :experience)
         
     end
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors }, status: :unprocessable_entity
       end
       def seeker_params
-        params.permit(:full_name, :salary_expectation, :cv,:skills, :user_id, :availability,  certificates: [], experience: [], :country, :passport, :image, :job_type)
+        params.permit(:full_name, :country, :passport, :image, :job_type, :salary_expectation, :cv,:skills, :user_id, :availability,  :certificate, :experiences)
         
     end
 end

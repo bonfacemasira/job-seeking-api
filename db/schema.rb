@@ -54,14 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
   create_table "job_seekers", force: :cascade do |t|
     t.string "full_name"
     t.integer "salary_expectation"
-    t.string "certificates", default: [], array: true
-    t.string "cv"
     t.boolean "availability"
-    t.integer "user_id"
-    t.string "passport"
     t.string "country"
-    t.string "image"
-    t.string "experience", default: [], array: true
+    t.text "experience"
     t.string "job_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,7 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
     t.string "full_name"
     t.string "email"
     t.integer "phone_number"
-    t.integer "user_id"
     t.text "bio"
     t.string "profile_picture"
     t.datetime "created_at", null: false
