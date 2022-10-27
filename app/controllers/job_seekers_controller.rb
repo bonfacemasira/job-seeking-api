@@ -9,13 +9,32 @@ class JobSeekersController < ApplicationController
         render json: job_seeker, status: :created
         
     end
+    def update
+        seeker = JobSeeker.find_by(id: params[:id])
+
+        if seeker
+            seeker.update(seeker_params)
+            render json: seeker
+        else
+            render json: {error: "Job-seeker  not found"}, status: :not_found
+        end
+        
+    end
+   
+   
+  
+
     private
 
     def job_seeker_params
-        params.permit(:full_name, :salary_expectation, :cv,:skills, :user_id, :availability,  certificates: [])
+        params.permit(:full_name, :salary_expectation, :cv,:skills, :user_id, :availability,  certificates: [], experience: [], :country, :passport, :image, :job_type)
         
     end
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors }, status: :unprocessable_entity
       end
+      def seeker_params
+        params.permit(:full_name, :salary_expectation, :cv,:skills, :user_id, :availability,  certificates: [], experience: [], :country, :passport, :image, :job_type)
+        
+    end
 end

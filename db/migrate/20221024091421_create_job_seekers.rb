@@ -7,7 +7,11 @@ class CreateJobSeekers < ActiveRecord::Migration[7.0]
       t.string :cv
       t.boolean :availability
       t.integer :user_id
-
+       t.string :passport
+       t.string :country
+       t.string :image
+       t.string :experience, array:true, default:[]
+       t.string :job_type
       t.timestamps
     end
   end
