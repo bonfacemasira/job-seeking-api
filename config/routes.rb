@@ -5,7 +5,7 @@ Rails.application.routes.draw do
  resources :users, only: [:index, :show, :destroy, :create]
  resources :sessions, only: [:create, :destroy]
  resources :job_seekers
- resources :profiles, only: [:update]
+ resources :profiles, only: [:index, :update, :show]
  resources :offers
  resources :payments
  resources :employers
