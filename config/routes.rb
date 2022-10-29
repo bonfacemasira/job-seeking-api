@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users,:controllers => {
+    :registrations => 'user/registrations', :sessions => "user/sessions", :defaults => { :format => 'json' },
+}
+ resources :users, only: [:index, :show, :destroy, :create]
+ resources :sessions, only: [:create, :destroy]
+ resources :job_seekers
+ resources :profiles, only: [:update]
+ resources :offers
+ resources :payments
+ resources :employers
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
