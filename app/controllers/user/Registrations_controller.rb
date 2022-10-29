@@ -3,7 +3,8 @@ class User::RegistrationsController < Devise::RegistrationsController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    
+   
+    #  protect_from_forgery with: :null_session
 
     def create
         user = User.create!(user_params)
@@ -27,4 +28,5 @@ class User::RegistrationsController < Devise::RegistrationsController
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors }, status: :unprocessable_entity
       end
+      
 end

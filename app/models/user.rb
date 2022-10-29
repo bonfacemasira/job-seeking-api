@@ -1,8 +1,10 @@
 class User < ApplicationRecord
-  
+ 
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+           :validatable, :recoverable, :rememberable
   validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   before_create :set_default_role
 
@@ -15,4 +17,8 @@ class User < ApplicationRecord
   def set_default_role
    self.role ||= :admin
   end
+  
 end
+
+
+

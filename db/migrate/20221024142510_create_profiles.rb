@@ -6,8 +6,8 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.string :full_name
       t.string :email
       t.integer :phone_number
-      t.integer :user_id
-      t.string :bio
+      # t.integer :user_id
+      t.text :bio
       t.string :profile_picture
       t.timestamps
     end

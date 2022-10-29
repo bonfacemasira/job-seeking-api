@@ -1,9 +1,9 @@
-class SessionsController < Devise::SessionsController
+class User::SessionsController < Devise::SessionsController
     def create
-        user = User.find_by(username: params[:username])
-        if user&.authenticate(params[:password])
+        user = User.find_by(email: params[:email])
+        if user&.valid_password?(params[:password])
             session[:user_id] = user.id
-            render json: user, status: :created
+            render json: user
         else
            render json: { error: ["Invalid username or password"] }, status: :unauthorized
         end
@@ -17,4 +17,5 @@ class SessionsController < Devise::SessionsController
         render json: {errors: ["No user logged in"]}, status: :unauthorized
       end
     end
+
 end
