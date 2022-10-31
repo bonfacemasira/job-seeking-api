@@ -9,5 +9,5 @@ Rails.application.routes.draw do
  resources :offers
  resources :payments
  resources :employers
-
+get '/me', to: "users#loggedIn"
 end

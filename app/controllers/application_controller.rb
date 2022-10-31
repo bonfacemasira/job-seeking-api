@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     # protect_from_forgery with: :null_session
 
     # protect_from_forgery prepend: true

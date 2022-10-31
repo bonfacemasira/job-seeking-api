@@ -20,6 +20,11 @@ class JobSeekersController < ApplicationController
         end
         
     end
+    def index
+        jobseeker = JobSeeker.all
+        render json: jobseeker
+        
+    end
    
    
   
