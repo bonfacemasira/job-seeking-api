@@ -1,25 +1,16 @@
 class NotificationsController < ApplicationController
     def index
-        @notifications = Notification.where(user: current_user).unread
+        @notifications = Notification.all
     end
 
     def create
-        @notification = Notification.new(notification_params)
-        @notification.sender = current_user
-        @notification.save
-        redirect_to notifications_path
-    end
-    
-    def mark_as_read
-        @notifications = Notification.where(user: current_user).unread
-        @notifications.update_all(read_at: Time.zone.now)
-        redirect_to notifications_path
+        @notification = Notification.create(notification_params)
+        render json: @notification, status: :created
     end
 
     def destroy
         @notification = Notification.find(params[:id])
         @notification.destroy
-        redirect_to notifications_path
     end
 
     private
