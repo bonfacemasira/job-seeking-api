@@ -48,6 +48,7 @@ Rails.application.configure do
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
+  config.hosts << /[a-z0-9-.]+\.ngrok\.io/
 
  config.active_storage.service = :local
   # Raises error for missing translations.
@@ -61,5 +62,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_deliveries = true
-
+  # config.hosts << /[a-z0–9-.]+\.ngrok\.io/
+  
 end

@@ -10,4 +10,7 @@ Rails.application.routes.draw do
  resources :payments
  resources :employers
 get '/me', to: "users#loggedIn"
+post "/stkpush", to: "payments#stkpush"
+post "/polling_payment", to: "payments#polling_payment"
+post '/callback', to: "payments#callback"
 end

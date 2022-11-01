@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_31_183135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
     t.bigint "employer_id", null: false
     t.bigint "job_seeker_id", null: false
     t.bigint "user_id", null: false
-    t.string "profile_picture"
     t.string "email"
     t.string "phone_number"
     t.text "bio"
@@ -82,6 +87,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_085821) do
     t.bigint "employer_id", null: false
     t.integer "amount"
     t.string "payment_id"
+    t.string "mpesaReceiptNumber"
+    t.string "phoneNumber"
+    t.string "checkoutRequestID"
+    t.string "merchantRequestID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employer_id"], name: "index_payments_on_employer_id"

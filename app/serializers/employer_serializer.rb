@@ -1,4 +1,4 @@
 class EmployerSerializer < ActiveModel::Serializer
-  attributes :id, :full_name, :email, :phone_number, :organization
+  attributes :id,  :phone_number, :organization, :user_id, :image
   has_one :user
 end
