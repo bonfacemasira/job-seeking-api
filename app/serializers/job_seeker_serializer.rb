@@ -1,6 +1,5 @@
-class JobSeekerSerializer 
-  include JSONAPI::Serializer
-  # < ActiveModel::Serializer
+class JobSeekerSerializer < ActiveModel::Serializer
+  # include JSONAPI::Serializer
   # removed user_id
     attributes :id, :full_name, :country, :job_type, :salary_expectation, :skills, :availability, :experience, :passport_url, :image_url, :certificate_url, :cv_url
 #  has_one :user
