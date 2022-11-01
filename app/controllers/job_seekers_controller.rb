@@ -14,7 +14,7 @@ class JobSeekersController < ApplicationController
 
         if seeker
             seeker.update(job_seeker_params)
-            render json: seeker
+            render json: JobSeekerSerializer.new(seeker).serializable_hash[:data]
         else
             render json: {error: "Job-seeker  not found"}, status: :not_found
         end
@@ -22,7 +22,7 @@ class JobSeekersController < ApplicationController
     end
     def index
         jobseeker = JobSeeker.all
-        render json: jobseeker
+        render json: JobSeekerSerializer.new(jobseeker).serializable_hash[:data]
         
     end
    
