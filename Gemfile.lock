@@ -191,6 +191,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
+  responders
   tzinfo-data
 
 RUBY VERSION

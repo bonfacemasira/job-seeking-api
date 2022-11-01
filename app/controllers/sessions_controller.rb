@@ -1,6 +1,8 @@
-class User::SessionsController < Devise::SessionsController
+class SessionsController < ApplicationController
+    skip_before_action :authorize, only: :create
+
     def create
-        user = User.find_by(email: params[:email])
+        user = User.find_by(email: params[:email]) # || Admin.find_by(email: params[:email])
         if user&.valid_password?(params[:password])
             session[:user_id] = user.id
             render json: user
@@ -10,12 +12,8 @@ class User::SessionsController < Devise::SessionsController
     end
 
     def destroy
-        if session[:user_id] 
-        session.destroy 
+        session.delete :user_id 
         head :no_content
-    else
-        render json: {errors: ["No user logged in"]}, status: :unauthorized
-      end
     end
 
 end
