@@ -1,4 +1,5 @@
 class JobSeeker < ApplicationRecord
+  # belongs_to :user
     has_one_attached :cv
     has_one_attached :image
     has_one_attached :certificate

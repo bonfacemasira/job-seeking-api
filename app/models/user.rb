@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # has_one :job_seeker, dependent: :destroy
  
 
   devise :database_authenticatable, :registerable,
