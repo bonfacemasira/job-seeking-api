@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   devise_for :users,:controllers => {
     :registrations => 'user/registrations', :sessions => "user/sessions", :defaults => { :format => 'json' },
 }
