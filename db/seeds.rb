@@ -7,4 +7,3 @@
 User.create(username: "phinic", password: "phinic", email: "phinic@gmail.com", password_confirmation:"phinic" , role:0)
 User.create(username: "nyangate", password: "nyangate", email: "nyangate@gmail.com", password_confirmation:"nyangate" , role:2)
 User.create(username: "nyangate", password: "nyangate", email: "ogeto@gmail.com", password_confirmation:"ogeto" , role:1)
-

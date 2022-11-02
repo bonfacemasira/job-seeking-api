@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
     t.bigint "employer_id", null: false
     t.bigint "job_seeker_id", null: false
     t.bigint "user_id", null: false
+    t.string "profile_picture"
     t.string "email"
     t.string "phone_number"
     t.text "bio"
@@ -87,10 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
     t.bigint "employer_id", null: false
     t.integer "amount"
     t.string "payment_id"
-    t.string "mpesaReceiptNumber"
-    t.string "phoneNumber"
-    t.string "checkoutRequestID"
-    t.string "merchantRequestID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employer_id"], name: "index_payments_on_employer_id"
