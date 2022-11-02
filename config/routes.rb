@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
   post '/users/signup', to: 'users#create'
-  post 'users/login', to: 'sessions#create'
+  post 'users/login', to: 'sessions#login'
   get 'users/me', to: 'users#show'
-  delete '/logout', to: 'sessions#destroy'
+  delete 'users/logout', to: 'sessions#destroy'
 
   #   devise_for :users,:controllers => {
 #     :registrations => 'user/registrations', :sessions => "user/sessions", :defaults => { :format => 'json' },

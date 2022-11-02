@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: :create
+  before_action :authorize, only:[:index, :show]
   wrap_parameters format: []
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-  def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
-    render json: user, status: :created
-  end
+  # def create
+  #   user = User.create!(user_params)
+  #   session[:user_id] = user.id
+  #   render json: user, status: :created
+  # end
+
+    # Registration action
+    def create
+      @user = User.create!(user_params)
+      token = encode_token({user_id: @user.id})
+      render json: {user: @user, token: token}, status: :created
+    end
 
   def show
     render json: @current_user
