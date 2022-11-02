@@ -5,7 +5,9 @@ class JobSeekersController < ApplicationController
     # include ActiveStorage::SetBlob, ActiveStorage::Streaming
     def create
         job_seeker = JobSeeker.create!(job_seeker_params)
-        render json: JobSeekerSerializer.new(job_seeker).serializable_hash[:data][:attributes], status: :created        
+        render json: job_seeker
+        # render json: JobSeekerSerializer.new(job_seeker).serializable_hash[:data][:attributes], status: :created
+        
     end
     
     def update
@@ -17,6 +19,7 @@ class JobSeekersController < ApplicationController
     def index
         jobseeker = JobSeeker.all
         render json: jobseeker
+
     end
    
    
