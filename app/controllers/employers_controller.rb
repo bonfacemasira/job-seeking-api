@@ -1,51 +1,30 @@
 class EmployersController < ApplicationController
   before_action :set_employer, only: %i[ show update destroy ]
 
-  # GET /employers
-  def index
-    @employers = Employer.all
+  wrap_parameters format: []
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+   
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-    render json: @employers
-  end
-
-  # GET /employers/1
-  def show
-    render json: @employer
-  end
-
-  # POST /employers
-  def create
-    @employer = Employer.new(employer_params)
-
-    if @employer.save
-      render json: @employer, status: :created, location: @employer
-    else
-      render json: @employer.errors, status: :unprocessable_entity
+    def create
+      employer = Employer.create!(employer_params)
+      render json: EmployerSerializer.new(employer).serializable_hash[:data][:attributes], status: :created
+      
     end
-  end
-
-  # PATCH/PUT /employers/1
-  def update
-    if @employer.update(employer_params)
-      render json: @employer
-    else
-      render json: @employer.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /employers/1
-  def destroy
-    @employer.destroy
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employer
-      @employer = Employer.find(params[:id])
+    def index
+      employer = Employer.all
+      render json: employer
+      
     end
 
-    # Only allow a list of trusted parameters through.
+    private
+
     def employer_params
-      params.require(:employer).permit(:user_id, :full_name, :email, :phone_number, :organization)
+      params.permit(:organization, :phone_number, :user_id, :image)
+      
     end
+    def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+end
+    
 end

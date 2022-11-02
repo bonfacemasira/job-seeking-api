@@ -2,7 +2,6 @@ class JobSeekersController < ApplicationController
     wrap_parameters format: []
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     # include ActiveStorage::SetBlob, ActiveStorage::Streaming
     def create
         job_seeker = JobSeeker.create!(job_seeker_params)
@@ -10,22 +9,17 @@ class JobSeekersController < ApplicationController
         # render json: JobSeekerSerializer.new(job_seeker).serializable_hash[:data][:attributes], status: :created
         
     end
+    
     def update
         seeker = JobSeeker.find_by(id: params[:id])
-
-        if seeker
-            seeker.update(job_seeker_params)
-            render json: seeker
-        else
-            render json: {error: "Job-seeker  not found"}, status: :not_found
-        end
-        
+        seeker.update!(job_seeker_params)
+        render json: seeker 
     end
+
     def index
         jobseeker = JobSeeker.all
         render json: jobseeker
 
-        
     end
    
    
@@ -37,11 +31,8 @@ class JobSeekersController < ApplicationController
      params.permit(:full_name, :country, :passport, :image, :job_type,:salary_expectation, :cv,:skills,  :availability,  :certificate, :experience)
         
     end
-    def render_unprocessable_entity_response(invalid)
-        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+
+    def render_not_found_response
+        render json: { error: "user not found" }, status: :not_found
     end
-    # def seeker_params
-    #     params.permit(:full_name, :country, :passport, :image, :job_type, :salary_expectation, :cv,:skills, :availability,  :certificate, :experiences)
-        
-    # end
 end

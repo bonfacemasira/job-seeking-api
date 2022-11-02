@@ -20,6 +20,9 @@ Bundler.require(*Rails.groups)
 
 module JobSeekingApi
   class Application < Rails::Application
+    # Use the responders controller from the responders gem
+    config.app_generators.scaffold_controller :responders_controller
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.autoload_paths += %W(#{config.root}/lib)
@@ -41,6 +44,12 @@ module JobSeekingApi
     config.action_dispatch.cookies_same_site_protection = :strict
   
     config.middleware.use ActionDispatch::Session::CookieStore
-
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load(File.open(env_file)).each do |key, value|
+      ENV[key.to_s] = value
+      end if File.exists?(env_file)
+      end
   end
+
 end

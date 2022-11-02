@@ -27,9 +27,6 @@ class ProfilesController < ApplicationController
         
     end
 
-  
-   
-    
     private
     def profile_params
         params.permit(:profile_picture, :email, :full_name, :phone_number, :bio, :user_id, :employer_id, :job_seeker_id)
