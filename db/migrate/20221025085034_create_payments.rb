@@ -4,7 +4,10 @@ class CreatePayments < ActiveRecord::Migration[7.0]
       t.references :employer, null: false, foreign_key: true
       t.integer :amount
       t.string :payment_id
-
+      t.string :mpesaReceiptNumber
+      t.string :phoneNumber
+      t.string :checkoutRequestID
+      t.string :merchantRequestID
       t.timestamps
     end
   end

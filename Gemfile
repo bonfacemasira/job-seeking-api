@@ -3,12 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.4"
 
+gem 'responders'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
-
+gem 'rest-client', '~> 2.0'
 gem 'active_model_serializers'
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -19,14 +21,16 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
-gem 'devise'
 
-gem "image_processing", ">= 1.2"
-gem 'bcrypt', '~> 3.1.7'
 
 # Used to generate seed data
 # https://github.com/faker-ruby/faker
 gem 'faker'
+
+gem "image_processing", ">= 1.2"
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'jwt'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
