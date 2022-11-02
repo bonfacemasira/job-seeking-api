@@ -15,7 +15,7 @@ payload = {
 'Password': password,
 'Timestamp': timestamp,
 'TransactionType': "CustomerPayBillOnline",
-'Amount': 500,
+'Amount': 1,
 'PartyA': phoneNumber,
 'PartyB': business_short_code,
 'PhoneNumber': phoneNumber,
@@ -90,7 +90,7 @@ headers = {
     render json: response 
   end
  def callback
-  callback_url = 'https://76b0-197-156-137-135.eu.ngrok.io'
+  callback_url = 'https://b97c-197-156-137-171.in.ngrok.io'
    
  end
   private 

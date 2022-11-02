@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_31_183135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
     t.bigint "employer_id", null: false
     t.bigint "job_seeker_id", null: false
     t.bigint "user_id", null: false
-    t.string "profile_picture"
     t.string "email"
     t.string "phone_number"
     t.text "bio"
@@ -88,6 +87,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
     t.bigint "employer_id", null: false
     t.integer "amount"
     t.string "payment_id"
+    t.string "mpesaReceiptNumber"
+    t.string "phoneNumber"
+    t.string "checkoutRequestID"
+    t.string "merchantRequestID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employer_id"], name: "index_payments_on_employer_id"
@@ -106,15 +109,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_093716) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "username", default: "", null: false
+    t.string "email"
+    t.string "username"
     t.integer "role", default: 0
-    t.string "password_digest", default: "", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["role"], name: "index_users_on_role"
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
