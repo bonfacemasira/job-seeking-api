@@ -1,4 +1,7 @@
 class JobSeeker < ApplicationRecord
+
+  has_many :offers
+  has_many :employers, through: :offers
   # belongs_to :user
     has_one_attached :cv
     has_one_attached :image

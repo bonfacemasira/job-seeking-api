@@ -73,9 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_183135) do
     t.bigint "employer_id", null: false
     t.bigint "job_seeker_id", null: false
     t.bigint "user_id", null: false
-    t.string "email"
-    t.string "phone_number"
-    t.text "bio"
+    t.string "image"
+    t.string "name"
+    t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employer_id"], name: "index_offers_on_employer_id"
