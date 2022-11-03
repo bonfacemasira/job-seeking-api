@@ -1,4 +1,5 @@
 class JobSeeker < ApplicationRecord
+  # belongs_to :user
     has_one_attached :cv
     has_one_attached :image
     has_one_attached :certificate
@@ -24,7 +25,7 @@ class JobSeeker < ApplicationRecord
     private
   
     # def correct_document_mime_type
-    #   if document.attached? && !document.content_type.in?(%w(application/msword application/pdf))
+    #   if JobSeeker.new.cv.attached? && !JobSeeker.new.cv.content_type.in?(%w(application/msword application/pdf))
     #     errors.add(:document, 'Must be a PDF or a DOC file')
     #   end
     # end

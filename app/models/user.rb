@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # has_one :job_seeker, dependent: :destroy
   has_secure_password
  
 
