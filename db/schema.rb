@@ -72,15 +72,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_183135) do
   create_table "offers", force: :cascade do |t|
     t.bigint "employer_id", null: false
     t.bigint "job_seeker_id", null: false
-    t.bigint "user_id", null: false
     t.string "image"
-    t.string "name"
     t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employer_id"], name: "index_offers_on_employer_id"
     t.index ["job_seeker_id"], name: "index_offers_on_job_seeker_id"
-    t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -122,6 +119,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_183135) do
   add_foreign_key "employers", "users"
   add_foreign_key "offers", "employers"
   add_foreign_key "offers", "job_seekers"
-  add_foreign_key "offers", "users"
   add_foreign_key "payments", "employers"
 end

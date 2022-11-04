@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     render json: users
   end
 
+
     # def loggedIn
     #   user = User.find_by(id: session[:user_id])
     #   if user

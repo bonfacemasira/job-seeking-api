@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :payments
   resources :employers
 
+  get '/my_offers/:id', to: 'job_seekers#myOffers'
   delete '/users', to: 'users#destroy'
   get '/users', to: 'users#index'
   post '/users/signup', to: 'users#create'

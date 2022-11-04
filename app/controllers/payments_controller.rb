@@ -90,7 +90,7 @@ headers = {
     render json: response 
   end
  def callback
-  callback_url = 'https://da58-41-212-84-46.eu.ngrok.io'
+  callback_url = 'https://b7bd-41-212-84-46.eu.ngrok.io'
    
  end
   private 

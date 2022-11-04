@@ -22,7 +22,10 @@ class JobSeekersController < ApplicationController
 
     end
    
-   
+    def myOffers
+        offers = Offer.where("job_seeker_id=?", params[:id])
+        render json: offers
+      end
   
 
     private
